@@ -19,12 +19,10 @@ SDL_Window* g_window{};
 
 void LogSDLVersion(const std::string& message, int major, int minor, int patch)
 {
-#if WIN32
-	std::stringstream ss;
-	ss << message << major << "." << minor << "." << patch << "\n";
-	OutputDebugString(ss.str().c_str());
+#if(WIN32)
+	OutputDebugString(std::format("{} {}.{}.{}\n", message, major, minor, patch).c_str());
 #else
-	std::cout << message << major << "." << minor << "." << patch << "\n";
+	std::cout << std::format("{} {}.{}.{}\n", message, major, minor, patch);
 #endif
 }
 
